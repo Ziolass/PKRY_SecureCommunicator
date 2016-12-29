@@ -9,20 +9,22 @@ import java.net.*;
 import java.io.*;
 
 public class MultiServer {
+    private final int listeningPort;
+    private boolean listening;
 
-    public void init(ConfigurationModel configurationModel)  {
-
-        int portNumber = Integer.parseInt(configurationModel.getListening_port());
-        boolean listening = true;
-
-        try (ServerSocket serverSocket = new ServerSocket(portNumber)) {
+    public MultiServer(ConfigurationModel configurationModel){
+        this.listeningPort = Integer.parseInt(configurationModel.getListening_port());
+    }
+    public void init()  {
+        listening = true;
+        try (ServerSocket serverSocket = new ServerSocket(listeningPort)) {
             while (listening) {
-                System.out.println("Began listening on port: " + portNumber);
+                System.out.println("Began listening on port: " + listeningPort);
                 new MultiServerThread(serverSocket.accept()).start();
             }
         } catch (IOException e) {
-            System.err.println("Could not listen on port " + portNumber);
-            System.exit(-1);
+            System.err.println("Could not listen on port " + listeningPort);
+            System.exit(1);
         }
     }
 }
