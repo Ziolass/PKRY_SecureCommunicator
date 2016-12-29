@@ -16,7 +16,7 @@ public class ConfigurationReader {
         ConfigurationModel configurationModel = null;
         Properties prop = new Properties();
 
-        try (InputStream input = new FileInputStream(configurationFile);){
+        try (InputStream input = new FileInputStream(configurationFile)){
 
             prop.load(input);
             String listening_port = prop.getProperty("listening_port");

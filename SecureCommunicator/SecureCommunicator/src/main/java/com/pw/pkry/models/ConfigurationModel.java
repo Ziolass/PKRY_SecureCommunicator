@@ -7,10 +7,12 @@ public class ConfigurationModel {
 
     private final String listening_port;
     private final String broadcast_port;
+    private final String username;
 
-    public ConfigurationModel(String listening_port, String broadcast_port) {
+    public ConfigurationModel(String listening_port, String broadcast_port, String username) {
         this.listening_port = listening_port;
         this.broadcast_port = broadcast_port;
+        this.username = username;
 
     }
 
@@ -20,5 +22,9 @@ public class ConfigurationModel {
 
     public String getListening_port() {
         return listening_port;
+    }
+
+    public String getusername(){
+        return username;
     }
 }
